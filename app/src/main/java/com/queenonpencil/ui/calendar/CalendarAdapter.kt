@@ -1,5 +1,6 @@
 package com.queenonpencil.ui.calendar
 
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -71,9 +72,8 @@ class CalendarAdapter(
             b.tvGraftInfo.text = "Прививка ${ev.graftingDt.toDisplayDate()}" +
                     if (ev.graftingDesc.isNotBlank()) " — ${ev.graftingDesc}" else ""
 
-            b.colorStrip.setBackgroundColor(
-                BreedingCalendar.GRAFT_COLORS.getOrElse(ev.graftingTp) { 0xFF9E9E9E.toInt() }
-            )
+            val color = BreedingCalendar.GRAFT_COLORS.getOrElse(ev.graftingTp) { 0xFF9E9E9E.toInt() }
+            b.colorBg.setBackgroundColor(Color.argb(77, Color.red(color), Color.green(color), Color.blue(color)))
 
             if (ev.eventNote.isNotBlank()) {
                 b.tvNote.visibility = View.VISIBLE
