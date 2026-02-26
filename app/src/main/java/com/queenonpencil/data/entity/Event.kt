@@ -20,5 +20,6 @@ data class Event(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     @ColumnInfo(name = "grafting_id") val graftingId: Long = 0,
     @ColumnInfo(name = "dt") val dt: String = "",
-    @ColumnInfo(name = "desc") val desc: String = ""
+    @ColumnInfo(name = "desc") val desc: String = "",
+    @ColumnInfo(name = "note", defaultValue = "") val note: String = ""
 )

@@ -8,10 +8,12 @@ data class CalendarEvent(
     val eventId: Long,
     val eventDt: String,
     val eventDesc: String,
+    val eventNote: String,
     val graftingId: Long,
     val graftingDt: String,
     val graftingDesc: String,
-    val graftingShift: Int
+    val graftingShift: Int,
+    val graftingTp: Int
 )
 
 @Dao
@@ -24,14 +26,32 @@ interface EventDao {
 
     @Query("""
         SELECT events.id AS eventId, events.dt AS eventDt, events.desc AS eventDesc,
+               events.note AS eventNote,
                grafting.id AS graftingId, grafting.dt AS graftingDt,
-               grafting.desc AS graftingDesc, grafting.shift AS graftingShift
+               grafting.desc AS graftingDesc, grafting.shift AS graftingShift,
+               grafting.tp AS graftingTp
         FROM events
         INNER JOIN grafting ON events.grafting_id = grafting.id
         WHERE events.dt BETWEEN date('now','-1 day') AND date('now','+14 days')
         ORDER BY events.dt, grafting.dt
     """)
     fun getUpcomingEvents(): LiveData<List<CalendarEvent>>
+
+    @Query("UPDATE events SET note = :note WHERE id = :eventId")
+    suspend fun updateNote(eventId: Long, note: String)
+
+    @Query("""
+        SELECT events.id AS eventId, events.dt AS eventDt, events.desc AS eventDesc,
+               events.note AS eventNote,
+               grafting.id AS graftingId, grafting.dt AS graftingDt,
+               grafting.desc AS graftingDesc, grafting.shift AS graftingShift,
+               grafting.tp AS graftingTp
+        FROM events
+        INNER JOIN grafting ON events.grafting_id = grafting.id
+        WHERE events.note != ''
+        ORDER BY grafting.dt DESC, events.dt
+    """)
+    fun getEventsWithNotes(): LiveData<List<CalendarEvent>>
 
     @Query("SELECT * FROM events WHERE dt >= date('now') ORDER BY dt")
     suspend fun getFutureEvents(): List<Event>

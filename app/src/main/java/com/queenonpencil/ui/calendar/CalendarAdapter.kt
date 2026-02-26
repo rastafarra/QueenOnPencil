@@ -1,8 +1,10 @@
 package com.queenonpencil.ui.calendar
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.queenonpencil.data.BreedingCalendar
 import com.queenonpencil.data.dao.CalendarEvent
 import com.queenonpencil.databinding.ItemCalendarEventBinding
 import com.queenonpencil.databinding.ItemCalendarHeaderBinding
@@ -14,7 +16,8 @@ sealed class CalendarItem {
 }
 
 class CalendarAdapter(
-    private val onEventClick: (Long) -> Unit
+    private val onNoteClick: (eventId: Long, currentNote: String) -> Unit,
+    private val onGraftClick: (graftingId: Long) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private var items = listOf<CalendarItem>()
@@ -63,10 +66,27 @@ class CalendarAdapter(
     inner class EventVH(private val b: ItemCalendarEventBinding) :
         RecyclerView.ViewHolder(b.root) {
         fun bind(item: CalendarItem.EventItem) {
-            b.tvEventDesc.text = item.event.eventDesc
-            b.tvGraftInfo.text = "Прививка ${item.event.graftingDt.toDisplayDate()}" +
-                    if (item.event.graftingDesc.isNotBlank()) " — ${item.event.graftingDesc}" else ""
-            b.root.setOnClickListener { onEventClick(item.event.graftingId) }
+            val ev = item.event
+            b.tvEventDesc.text = ev.eventDesc
+            b.tvGraftInfo.text = "Прививка ${ev.graftingDt.toDisplayDate()}" +
+                    if (ev.graftingDesc.isNotBlank()) " — ${ev.graftingDesc}" else ""
+
+            b.colorStrip.setBackgroundColor(
+                BreedingCalendar.GRAFT_COLORS.getOrElse(ev.graftingTp) { 0xFF9E9E9E.toInt() }
+            )
+
+            if (ev.eventNote.isNotBlank()) {
+                b.tvNote.visibility = View.VISIBLE
+                b.tvNote.text = ev.eventNote
+            } else {
+                b.tvNote.visibility = View.GONE
+            }
+
+            b.root.setOnClickListener { onNoteClick(ev.eventId, ev.eventNote) }
+            b.root.setOnLongClickListener {
+                onGraftClick(ev.graftingId)
+                true
+            }
         }
     }
 }
