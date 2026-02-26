@@ -4,6 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.queenonpencil.data.AppDatabase
+import com.queenonpencil.notification.AlarmScheduler
 import kotlinx.coroutines.launch
 
 class ArchiveViewModel(app: Application) : AndroidViewModel(app) {
@@ -12,6 +13,8 @@ class ArchiveViewModel(app: Application) : AndroidViewModel(app) {
 
     fun delete(id: Long) {
         viewModelScope.launch {
+            val eventIds = db.eventDao().getIdsByGraftingId(id)
+            eventIds.forEach { AlarmScheduler.cancelEvent(getApplication(), it) }
             db.graftingDao().deleteById(id)
         }
     }

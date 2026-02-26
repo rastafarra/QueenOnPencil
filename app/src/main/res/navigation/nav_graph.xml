@@ -31,4 +31,9 @@
             android:id="@+id/action_archive_to_graftEdit"
             app:destination="@id/graftEditFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.queenonpencil.ui.settings.SettingsFragment"
+        android:label="@string/settings" />
 </navigation>

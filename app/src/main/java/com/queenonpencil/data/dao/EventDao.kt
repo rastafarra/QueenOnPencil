@@ -32,4 +32,10 @@ interface EventDao {
         ORDER BY events.dt, grafting.dt
     """)
     fun getUpcomingEvents(): LiveData<List<CalendarEvent>>
+
+    @Query("SELECT * FROM events WHERE dt >= date('now') ORDER BY dt")
+    suspend fun getFutureEvents(): List<Event>
+
+    @Query("SELECT id FROM events WHERE grafting_id = :graftingId")
+    suspend fun getIdsByGraftingId(graftingId: Long): List<Long>
 }

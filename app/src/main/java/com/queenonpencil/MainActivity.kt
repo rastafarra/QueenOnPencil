@@ -1,16 +1,25 @@
 package com.queenonpencil
 
+import android.Manifest
+import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.queenonpencil.databinding.ActivityMainBinding
+import com.queenonpencil.notification.NotificationHelper
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+
+    private val notificationPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ) { /* no-op, user decides */ }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,6 +29,17 @@ class MainActivity : AppCompatActivity() {
 
         val navHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         setupActionBarWithNavController(navHost.navController)
+
+        NotificationHelper.createChannel(this)
+        requestNotificationPermission()
+    }
+
+    private fun requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU &&
+            checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) != PackageManager.PERMISSION_GRANTED
+        ) {
+            notificationPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
     }
 
     override fun onSupportNavigateUp(): Boolean {
@@ -33,10 +53,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if (item.itemId == R.id.action_archive) {
-            val navHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-            navHost.navController.navigate(R.id.archiveFragment)
-            return true
+        val navHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        when (item.itemId) {
+            R.id.action_archive -> {
+                navHost.navController.navigate(R.id.archiveFragment)
+                return true
+            }
+            R.id.action_settings -> {
+                navHost.navController.navigate(R.id.settingsFragment)
+                return true
+            }
         }
         return super.onOptionsItemSelected(item)
     }

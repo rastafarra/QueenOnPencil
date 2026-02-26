@@ -5,4 +5,8 @@
         android:id="@+id/action_archive"
         android:title="@string/archive"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_settings"
+        android:title="@string/settings"
+        app:showAsAction="never" />
 </menu>

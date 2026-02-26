@@ -13,4 +13,7 @@
     <string name="save">Сохранить</string>
     <string name="delete">Удалить</string>
     <string name="events_preview">События календаря</string>
+    <string name="settings">Настройки</string>
+    <string name="notification_channel_name">События календаря</string>
+    <string name="notification_time_label">Время уведомлений</string>
 </resources>

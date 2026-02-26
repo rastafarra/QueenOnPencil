@@ -5,6 +5,7 @@ import androidx.lifecycle.*
 import com.queenonpencil.data.AppDatabase
 import com.queenonpencil.data.BreedingCalendar
 import com.queenonpencil.data.entity.Grafting
+import com.queenonpencil.notification.AlarmScheduler
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -53,6 +54,8 @@ class GraftEditViewModel(app: Application) : AndroidViewModel(app) {
             }
             val events = BreedingCalendar.generateEvents(id, dt, tp)
             eventDao.insertAll(events)
+            val savedEvents = eventDao.getFutureEvents().filter { it.graftingId == id }
+            AlarmScheduler.scheduleEvents(getApplication(), savedEvents)
             _saved.postValue(true)
         }
     }
