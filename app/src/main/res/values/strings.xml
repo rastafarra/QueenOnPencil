@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Матка на карандаше</string>
+    <string name="new_grafting">Новая прививка</string>
+    <string name="edit_grafting">Прививка</string>
+    <string name="archive">Архив прививок</string>
+    <string name="no_events">Нет событий на ближайшие дни</string>
+    <string name="no_graftings">Нет прививок</string>
+    <string name="grafting_date">Дата прививки</string>
+    <string name="grafting_type">Тип прививки</string>
+    <string name="series_number">Номер партии</string>
+    <string name="description">Описание</string>
+    <string name="save">Сохранить</string>
+    <string name="delete">Удалить</string>
+    <string name="events_preview">События календаря</string>
+</resources>
