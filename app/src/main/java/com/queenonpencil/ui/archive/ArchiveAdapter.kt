@@ -1,7 +1,9 @@
 package com.queenonpencil.ui.archive
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
@@ -10,6 +12,8 @@ import com.queenonpencil.databinding.ItemArchiveBinding
 import com.queenonpencil.util.toDisplayDate
 
 class ArchiveAdapter(
+    private val lifecycleOwner: LifecycleOwner,
+    private val viewModel: ArchiveViewModel,
     private val onClick: (Long) -> Unit,
     private val onDelete: (Long) -> Unit
 ) : ListAdapter<Grafting, ArchiveAdapter.VH>(DIFF) {
@@ -32,6 +36,15 @@ class ArchiveAdapter(
             b.tvDesc.text = g.desc.ifBlank { "Без описания" }
             b.root.setOnClickListener { onClick(g.id) }
             b.btnDelete.setOnClickListener { onDelete(g.id) }
+
+            viewModel.getNotesForGrafting(g.id).observe(lifecycleOwner) { notes ->
+                if (notes.isNullOrEmpty()) {
+                    b.tvNotes.visibility = View.GONE
+                } else {
+                    b.tvNotes.visibility = View.VISIBLE
+                    b.tvNotes.text = notes.joinToString("\n") { "${it.dt.toDisplayDate()} · ${it.desc}: ${it.note}" }
+                }
+            }
         }
     }
 }

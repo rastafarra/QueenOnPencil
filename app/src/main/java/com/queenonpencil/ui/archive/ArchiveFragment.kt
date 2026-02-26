@@ -24,6 +24,8 @@ class ArchiveFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         val adapter = ArchiveAdapter(
+            lifecycleOwner = viewLifecycleOwner,
+            viewModel = viewModel,
             onClick = { graftId ->
                 findNavController().navigate(
                     R.id.action_archive_to_graftEdit,

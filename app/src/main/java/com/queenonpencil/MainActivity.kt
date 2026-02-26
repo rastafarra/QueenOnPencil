@@ -55,10 +55,6 @@ class MainActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val navHost = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         when (item.itemId) {
-            R.id.action_journal -> {
-                navHost.navController.navigate(R.id.journalFragment)
-                return true
-            }
             R.id.action_archive -> {
                 navHost.navController.navigate(R.id.archiveFragment)
                 return true

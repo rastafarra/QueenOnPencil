@@ -18,6 +18,4 @@
     <string name="notification_time_label">Время уведомлений</string>
     <string name="note_title">Заметка</string>
     <string name="note_hint">Введите заметку…</string>
-    <string name="journal">Журнал</string>
-    <string name="no_notes">Нет заметок</string>
 </resources>

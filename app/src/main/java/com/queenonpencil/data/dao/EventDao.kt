@@ -40,18 +40,8 @@ interface EventDao {
     @Query("UPDATE events SET note = :note WHERE id = :eventId")
     suspend fun updateNote(eventId: Long, note: String)
 
-    @Query("""
-        SELECT events.id AS eventId, events.dt AS eventDt, events.desc AS eventDesc,
-               events.note AS eventNote,
-               grafting.id AS graftingId, grafting.dt AS graftingDt,
-               grafting.desc AS graftingDesc, grafting.shift AS graftingShift,
-               grafting.tp AS graftingTp
-        FROM events
-        INNER JOIN grafting ON events.grafting_id = grafting.id
-        WHERE events.note != ''
-        ORDER BY grafting.dt DESC, events.dt
-    """)
-    fun getEventsWithNotes(): LiveData<List<CalendarEvent>>
+    @Query("SELECT * FROM events WHERE grafting_id = :graftingId AND note != '' ORDER BY dt")
+    fun getNotedEventsByGrafting(graftingId: Long): LiveData<List<Event>>
 
     @Query("SELECT * FROM events WHERE dt >= date('now') ORDER BY dt")
     suspend fun getFutureEvents(): List<Event>
