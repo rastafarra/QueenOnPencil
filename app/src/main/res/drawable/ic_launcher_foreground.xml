@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Background honeycomb hexagons -->
+    <path android:fillColor="#1E1E1E"
+        android:strokeColor="#4A3800"
+        android:strokeWidth="0.8"
+        android:pathData="M18,8 L28,8 L33,16.7 L28,25.3 L18,25.3 L13,16.7 Z"/>
+    <path android:fillColor="#1E1E1E"
+        android:strokeColor="#4A3800"
+        android:strokeWidth="0.8"
+        android:pathData="M78,8 L88,8 L93,16.7 L88,25.3 L78,25.3 L73,16.7 Z"/>
+    <path android:fillColor="#1E1E1E"
+        android:strokeColor="#4A3800"
+        android:strokeWidth="0.8"
+        android:pathData="M4,24 L14,24 L19,32.7 L14,41.3 L4,41.3 L-1,32.7 Z"/>
+    <path android:fillColor="#1E1E1E"
+        android:strokeColor="#4A3800"
+        android:strokeWidth="0.8"
+        android:pathData="M94,24 L104,24 L109,32.7 L104,41.3 L94,41.3 L89,32.7 Z"/>
+    <path android:fillColor="#1E1E1E"
+        android:strokeColor="#4A3800"
+        android:strokeWidth="0.8"
+        android:pathData="M4,66 L14,66 L19,74.7 L14,83.3 L4,83.3 L-1,74.7 Z"/>
+    <path android:fillColor="#1E1E1E"
+        android:strokeColor="#4A3800"
+        android:strokeWidth="0.8"
+        android:pathData="M94,66 L104,66 L109,74.7 L104,83.3 L94,83.3 L89,74.7 Z"/>
+    <path android:fillColor="#1E1E1E"
+        android:strokeColor="#4A3800"
+        android:strokeWidth="0.8"
+        android:pathData="M18,82 L28,82 L33,90.7 L28,99.3 L18,99.3 L13,90.7 Z"/>
+    <path android:fillColor="#1E1E1E"
+        android:strokeColor="#4A3800"
+        android:strokeWidth="0.8"
+        android:pathData="M78,82 L88,82 L93,90.7 L88,99.3 L78,99.3 L73,90.7 Z"/>
+
+    <!-- Main hexagon frame -->
+    <path android:fillColor="#151515"
+        android:strokeColor="#6B5000"
+        android:strokeWidth="2.5"
+        android:pathData="M54,16 L87,35 L87,73 L54,92 L21,73 L21,35 Z"/>
+
+    <!-- Wings (behind body) - sharp blades -->
+    <path android:fillColor="#7A5C00"
+        android:fillAlpha="0.5"
+        android:pathData="M47,47 L26,30 L23,42 L44,52 Z"/>
+    <path android:fillColor="#7A5C00"
+        android:fillAlpha="0.5"
+        android:pathData="M61,47 L82,30 L85,42 L64,52 Z"/>
+    <path android:fillColor="#7A5C00"
+        android:fillAlpha="0.35"
+        android:pathData="M46,52 L30,46 L28,54 L44,57 Z"/>
+    <path android:fillColor="#7A5C00"
+        android:fillAlpha="0.35"
+        android:pathData="M62,52 L78,46 L80,54 L64,57 Z"/>
+
+    <!-- Abdomen -->
+    <path android:fillColor="#C49000"
+        android:pathData="M54,78 L44,65 L43,55 L47,48 L54,46 L61,48 L65,55 L64,65 Z"/>
+
+    <!-- Abdomen stripes -->
+    <path android:fillColor="#111111"
+        android:pathData="M44,56 L64,56 L64,59 L44,59 Z"/>
+    <path android:fillColor="#111111"
+        android:pathData="M45,64 L63,64 L63,67 L45,67 Z"/>
+    <path android:fillColor="#111111"
+        android:pathData="M48,72 L60,72 L60,74.5 L48,74.5 Z"/>
+
+    <!-- Thorax -->
+    <path android:fillColor="#C49000"
+        android:pathData="M48,48 L54,41 L60,48 L54,51 Z"/>
+
+    <!-- Head (angular skull) -->
+    <path android:fillColor="#C49000"
+        android:pathData="M47,41 L48,33 L51,29 L54,27 L57,29 L60,33 L61,41 L54,44 Z"/>
+
+    <!-- Skull eye sockets -->
+    <path android:fillColor="#111111"
+        android:pathData="M49,34 L52,31 L54.5,34 L52,37 Z"/>
+    <path android:fillColor="#111111"
+        android:pathData="M53.5,34 L56,31 L59,34 L56,37 Z"/>
+
+    <!-- Red eye glow -->
+    <path android:fillColor="#CC0000"
+        android:pathData="M51,33.5 A1.2,1.2 0 1,1 51,33.49 Z"/>
+    <path android:fillColor="#CC0000"
+        android:pathData="M56,33.5 A1.2,1.2 0 1,1 56,33.49 Z"/>
+
+    <!-- Antennae -->
+    <path android:fillColor="#00000000"
+        android:strokeColor="#C49000"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:pathData="M51,29 L44,19"/>
+    <path android:fillColor="#00000000"
+        android:strokeColor="#C49000"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:pathData="M57,29 L64,19"/>
+
+    <!-- Antenna tips -->
+    <path android:fillColor="#C49000"
+        android:pathData="M44,19 A1.5,1.5 0 1,1 44,18.99 Z"/>
+    <path android:fillColor="#C49000"
+        android:pathData="M64,19 A1.5,1.5 0 1,1 64,18.99 Z"/>
+
+    <!-- Stinger -->
+    <path android:fillColor="#CC0000"
+        android:pathData="M52,78 L54,86 L56,78 Z"/>
+
+    <!-- Mandibles -->
+    <path android:fillColor="#00000000"
+        android:strokeColor="#C49000"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:pathData="M50,41 L47,45"/>
+    <path android:fillColor="#00000000"
+        android:strokeColor="#C49000"
+        android:strokeWidth="1.5"
+        android:strokeLineCap="round"
+        android:pathData="M58,41 L61,45"/>
+
+    <!-- Legs -->
+    <path android:fillColor="#00000000"
+        android:strokeColor="#7A5C00"
+        android:strokeWidth="1.2"
+        android:strokeLineCap="round"
+        android:pathData="M45,54 L35,58 L33,56"/>
+    <path android:fillColor="#00000000"
+        android:strokeColor="#7A5C00"
+        android:strokeWidth="1.2"
+        android:strokeLineCap="round"
+        android:pathData="M63,54 L73,58 L75,56"/>
+    <path android:fillColor="#00000000"
+        android:strokeColor="#7A5C00"
+        android:strokeWidth="1.2"
+        android:strokeLineCap="round"
+        android:pathData="M44,62 L35,66 L33,64"/>
+    <path android:fillColor="#00000000"
+        android:strokeColor="#7A5C00"
+        android:strokeWidth="1.2"
+        android:strokeLineCap="round"
+        android:pathData="M64,62 L73,66 L75,64"/>
+</vector>

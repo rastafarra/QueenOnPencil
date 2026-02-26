@@ -4,5 +4,5 @@
     <color name="primary_dark">#6B65B3</color>
     <color name="primary_light">#E8E6F7</color>
     <color name="on_primary">#FFFFFF</color>
-    <color name="ic_launcher_background">#8882CF</color>
+    <color name="ic_launcher_background">#111111</color>
 </resources>
